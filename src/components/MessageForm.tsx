@@ -47,17 +47,18 @@ export class MessageForm extends React.Component<
     this.setState({ body: event.currentTarget.value });
   }
 
-  private handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+  private async handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const payload: Message = {
       body: this.state.body,
       user: { id: '123', name: 'iktakahiro' },
     };
-    postMessage(this.props.channelName, payload)
-      .then(() => {
-        this.setState({ body: '' });
-        this.props.setShouldReload(true);
-      })
-      .catch(err => console.log(err));
+    try {
+      await postMessage(this.props.channelName, payload)
+    } catch (e) {
+      console.log(e);
+    }
+    this.setState({ body: '' });
+    this.props.setShouldReload(true);
   }
 }

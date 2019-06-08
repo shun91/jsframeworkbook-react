@@ -59,10 +59,13 @@ export class MessageFeed extends React.Component<
     );
   }
 
-  private fetchMessages = (channelName: string) => {
+  private fetchMessages = async (channelName: string) => {
     this.props.setShouldReload(false);
-    fetchMessages(channelName)
-      .then(response => this.setState({ messages: response.data.messages }))
-      .catch(err => console.log(err));
+    try {
+      const resp = await fetchMessages(channelName);
+      this.setState({ messages: resp.data.messages });
+    } catch (e) {
+      console.log(e);
+    }
   };
 }
