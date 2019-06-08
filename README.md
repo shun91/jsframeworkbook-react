@@ -6,3 +6,4 @@
 
 - npm ではなく yarn を使用しています
 - 依存ライブラリは基本的に実装時点での最新版を使用しています
+- axios の `baseURL` は環境変数 (`webpack.EnvironmentPlugin`) から渡すようにしています

@@ -25,5 +25,8 @@ module.exports = [
       modules: [path.join(__dirname, 'src'), 'node_modules'],
       extensions: ['.ts', '.tsx', '.js'],
     },
+    plugins : [
+      new webpack.EnvironmentPlugin(['API_URL'])
+    ],
   },
 ];
